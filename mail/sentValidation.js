@@ -1,46 +1,95 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contactForm');
+
+    // --- Lógica para el Formulario de Contacto ---
+    const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     const submitButton = document.getElementById('sendMessageButton');
 
-    // La URL de tu endpoint de Formspree
-    const formspreeEndpoint = 'https://formspree.io/f/mdkdzjqz'; // ¡CAMBIA ESTO CON TU URL REAL!
+    // La URL de tu endpoint de Formspree para el formulario de contacto
+    const formspreeContactEndpoint = 'https://formspree.io/f/mdkdzjqz';
 
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe de forma tradicional (recarga la página)
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-        submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
-        formMessage.innerHTML = ''; // Limpia cualquier mensaje anterior
+            submitButton.disabled = true;
+            formMessage.innerHTML = '';
 
-        // Recoge los datos del formulario de manera sencilla
-        const formData = new FormData(form);
+            const formData = new FormData(contactForm);
 
-        try {
-            // Envía los datos a Formspree usando la API Fetch
-            const response = await fetch(formspreeEndpoint, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Opcional, pero Formspree lo recomienda para AJAX
-                }
-            });
+            try {
+                const response = await fetch(formspreeContactEndpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-            if (response.ok) { // Si la respuesta es exitosa (código 200 OK)
-                formMessage.innerHTML = '<div class="alert alert-success" role="alert">¡Mensaje enviado con éxito! Te responderemos pronto.</div>';
-                form.reset(); // Reinicia el formulario
-            } else { // Si hay un error en la respuesta de Formspree
-                const data = await response.json();
-                if (data && data.errors) {
-                    formMessage.innerHTML = '<div class="alert alert-danger" role="alert">Error: ' + data.errors.map(err => err.message).join(', ') + '</div>';
+                if (response.ok) {
+                    formMessage.innerHTML = '<div class="alert alert-success" role="alert">¡Mensaje enviado con éxito! Te responderemos pronto.</div>';
+                    contactForm.reset();
                 } else {
-                    formMessage.innerHTML = '<div class="alert alert-danger" role="alert">Lo sentimos, hubo un problema al enviar tu mensaje. Inténtalo de nuevo.</div>';
+                    const data = await response.json();
+                    if (data && data.errors) {
+                        formMessage.innerHTML = '<div class="alert alert-danger" role="alert">Error: ' + data.errors.map(err => err.message).join(', ') + '</div>';
+                    } else {
+                        formMessage.innerHTML = '<div class="alert alert-danger" role="alert">Lo sentimos, hubo un problema al enviar tu mensaje. Inténtalo de nuevo.</div>';
+                    }
                 }
+            } catch (error) {
+                console.error('Error al enviar el formulario de contacto:', error);
+                formMessage.innerHTML = '<div class="alert alert-danger" role="alert">Error de conexión. Asegúrate de tener Internet y vuelve a intentarlo.</div>';
+            } finally {
+                submitButton.disabled = false;
             }
-        } catch (error) { // Si hay un error de red o de conexión
-            console.error('Error al enviar el formulario:', error);
-            formMessage.innerHTML = '<div class="alert alert-danger" role="alert">Error de conexión. Asegúrate de tener Internet y vuelve a intentarlo.</div>';
-        } finally {
-            submitButton.disabled = false; // Vuelve a habilitar el botón
-        }
-    });
+        });
+    }
+
+    // --- Lógica para el Formulario de Newsletter ---
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterMessage = document.getElementById('newsletterMessage');
+    const newsletterButton = document.getElementById('newsletterButton');
+
+    // La URL de tu endpoint de Formspree para el formulario de newsletter
+    const formspreeNewsletterEndpoint = 'https://formspree.io/f/xovllgzg'; // **¡Reemplaza esto con tu URL real!**
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            newsletterButton.disabled = true;
+            newsletterMessage.innerHTML = '';
+
+            const formData = new FormData(newsletterForm);
+
+            try {
+                const response = await fetch(formspreeNewsletterEndpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    newsletterMessage.innerHTML = '<div class="alert alert-success" role="alert">¡Gracias por suscribirte!</div>';
+                    newsletterForm.reset();
+                } else {
+                    const data = await response.json();
+                    if (data && data.errors) {
+                        newsletterMessage.innerHTML = '<div class="alert alert-danger" role="alert">Error: ' + data.errors.map(err => err.message).join(', ') + '</div>';
+                    } else {
+                        newsletterMessage.innerHTML = '<div class="alert alert-danger" role="alert">Lo sentimos, hubo un problema al suscribirte. Inténtalo de nuevo.</div>';
+                    }
+                }
+            } catch (error) {
+                console.error('Error al enviar el formulario de newsletter:', error);
+                newsletterMessage.innerHTML = '<div class="alert alert-danger" role="alert">Error de conexión. Asegúrate de tener Internet y vuelve a intentarlo.</div>';
+            } finally {
+                newsletterButton.disabled = false;
+            }
+        });
+    }
+
 });

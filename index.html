@@ -268,13 +268,13 @@
                     <h2 class="text-secondary font-weight-medium m-0">Conexión Café</h2>
                     <h1 class="display-1 text-secondary m-0">Tu pausa con propósito.</h1>
                     <h2 class="text-secondary m-0">Un café coworking para inspirar y reconectar.</h2>
-                    <div class="buttons-container">
+                    <div class="buttons-container d-flex flex-column gap-3 w-50">
                         <a href="#servicios" class="btn btn-primary font-weight-bold py-2 px-4">☕ Conoce nuestro espacio</a>
                         <a href="#contacto" class="btn btn-secondary font-weight-bold py-2 px-4">📅 Reserva tu visita</a>
                         <a href="https://www.instagram.com/conexioncafe/" target="_blank" class="btn btn-outline-secondary font-weight-bold py-2 px-4"><i class="fab fa-instagram mr-2"></i>Síguenos en Instagram</a>
                     </div>
                 </div>
-                <img class="coffee-image" src="img/capuchinno.png" alt="Café PNG">
+                <img class="coffee-image" src="img/coffeecake-min.png" alt="Café PNG">
             </div>
         </div>
     </div>
@@ -288,7 +288,7 @@
                 <div class="col-lg-7 py-0 py-lg-5">
                     <h1 class="mb-3">Un espacio para la inspiración</h1>
                     <p class="mb-4">Conexión Café nace como un espacio donde las ideas, las personas y la inspiración se encuentran. Más que un café, es un punto de encuentro entre la creatividad y la productividad, entre el trabajo y el disfrute.</p>
-                    <p>En un mundo cada vez más digital, Conexión Café ofrece una experiencia tangible: conectarse con otros profesionales, con uno mismo, con el entorno y con una taza de café que despierta los sentidos. Aquí, cada mesa es una oportunidad, cada conversación una chispa y cada rincón una invitación a crear.</p>
+                    <p>En un mundo cada vez más digital, Conexión Café ofrece una experiencia tangible; conectarse con otros profesionales, con uno mismo, con el entorno y con una taza de café que despierta los sentidos. Aquí, cada mesa es una oportunidad, cada conversación una chispa y cada rincón una invitación a crear.</p>
                     <p>Ya sea que vengas a terminar un proyecto, iniciar un sueño o simplemente a dejarte inspirar, Conexión Café es el lugar donde todo comienza a fluir.</p>
                     <a href="#contacto" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Contáctanos</a>
                 </div>
@@ -318,7 +318,7 @@
                             <h4><i class="fa fa-laptop service-icon"></i> Coworking</h4>
                             <p class="m-0">Un espacio diseñado para trabajar sin prisa, con el confort que necesitas para fluir.</p>
                             <p class="m-0">Contamos con WiFi gratuito, tomas eléctricas disponibles y toda la calidez de nuestro menú a tu alcance.</p>
-                            <p class="m-0">Aquí puedes enfocarte, crear y reconectar — siempre acompañado de un buen café.</p>
+                            <p class="m-0">Aquí puedes enfocarte, crear y reconectar; siempre acompañado de un buen café.</p>
                         </div>
                     </div>
                 </div>
@@ -330,7 +330,7 @@
                         <div class="col-sm-7">
                             <h4><i class="fa fa-utensils service-icon"></i> Brunch</h4>
                             <p class="m-0">Porque una buena comida puede transformar el día, en Conexión Café ofrecemos opciones de brunch pensadas para disfrutar con calma.</p>
-                            <p class="m-0">Ideal para venir solo, en pareja o con amigos. Aquí el brunch es más que una comida: es una excusa deliciosa para detenerte y disfrutar.</p>
+                            <p class="m-0">Ideal para venir solo, en pareja o con amigos. Aquí el brunch es más que una comida, es una excusa deliciosa para detenerte y disfrutar.</p>
                         </div>
                     </div>
                 </div>
@@ -527,13 +527,16 @@
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Mantente Conectado</h4>
                 <p>Suscríbete a nuestro boletín para recibir las últimas noticias y ofertas.</p>
                 <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Tu Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary font-weight-bold px-3">Suscribirse</button>
+                    <form id="newsletterForm">
+                        <div class="input-group">
+                            <input id="emailNewsletter" name="email" type="email" class="form-control border-light" style="padding: 25px;" placeholder="Tu Email" required>
+                            <div class="input-group-append">
+                                <button id="newsletterButton" type="submit" class="btn btn-primary font-weight-bold px-3">Suscribirse</button>
+                            </div>
                         </div>
+                        <div id="newsletterMessage" class="mt-2 text-white"></div>
+                    </form>
                     </div>
-                </div>
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
